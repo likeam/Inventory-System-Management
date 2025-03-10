@@ -1,4 +1,5 @@
 from tkinter import *
+from tkinter import ttk
 
 # Funcions
 
@@ -13,6 +14,18 @@ def employee_form():
 
    topFrame = Frame(employee_frame)
    topFrame.place(x=0, y=80, relwidth=1, height=235)
+   searchFrame = Frame(topFrame)
+   searchFrame.pack()
+   searchCombo = ttk.Combobox(searchFrame, values=('id', 'Name', 'Eamil'), font=('times new roman', 12), state="readonly")
+   searchCombo.set("Search By")
+   searchCombo.grid(row=0, column=0, padx=20)
+   searchEntery= Entry(searchFrame, font=('times new roman', 12), bg='lightyellow')
+   searchEntery.grid(row=0, column=1, padx=20)
+   searchButton= Button(searchFrame,  text="Search",  bg='#212529', fg='#E0E0E0', font=('times new roman', 10, 'bold'), cursor="hand2")
+   searchButton.grid(row=0,column=2, padx=20)
+   searchButton= Button(searchFrame,  text="Show All",bg='#212529', fg='#E0E0E0', font=('times new roman', 10, 'bold'), cursor="hand2")
+   searchButton.grid(row=0,column=3, padx=20)
+   
 
 
 # GUI
