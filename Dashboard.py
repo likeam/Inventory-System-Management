@@ -1,31 +1,7 @@
 from tkinter import *
-from tkinter import ttk
+from employees import employee_form
 
-# Funcions
 
-def employee_form():
-   employee_frame=Frame(root, width=1070, height=567, bg='#87CEEB')
-   employee_frame.place(x=200, y=105)
-   headingLabel= Label(employee_frame,text="Manage Employee Details", font=('times new roman', 15, 'bold'),  bg='#212529', fg='#E0E0E0')
-   headingLabel.place(x=0, y=0,  relwidth=1)
-
-   backButton = Button(employee_frame, text="Back", padx=20,pady=10, font=('times new roman', 15, 'bold'),cursor="hand2")
-   backButton.place(x=10, y=30)
-
-   topFrame = Frame(employee_frame)
-   topFrame.place(x=0, y=80, relwidth=1, height=235)
-   searchFrame = Frame(topFrame)
-   searchFrame.pack()
-   searchCombo = ttk.Combobox(searchFrame, values=('id', 'Name', 'Eamil'), font=('times new roman', 12), state="readonly")
-   searchCombo.set("Search By")
-   searchCombo.grid(row=0, column=0, padx=20)
-   searchEntery= Entry(searchFrame, font=('times new roman', 12), bg='lightyellow')
-   searchEntery.grid(row=0, column=1, padx=20)
-   searchButton= Button(searchFrame,  text="Search",  bg='#212529', fg='#E0E0E0', font=('times new roman', 10, 'bold'), cursor="hand2")
-   searchButton.grid(row=0,column=2, padx=20)
-   searchButton= Button(searchFrame,  text="Show All",bg='#212529', fg='#E0E0E0', font=('times new roman', 10, 'bold'), cursor="hand2")
-   searchButton.grid(row=0,column=3, padx=20)
-   
 
 
 # GUI
@@ -38,7 +14,7 @@ root.resizable(0,0)
 root.config(bg='gray')
 bg_Image = PhotoImage(file='inventory.png')
 
-titleLabel=Label(root, image=bg_Image, compound=LEFT, text='  Inventory Management System', font=('times new roman', 40 , 'bold'), bg='#212529', fg='#E0E0E0', anchor='w', padx=25, pady=10  )
+titleLabel=Label(root, image=bg_Image, compound=LEFT, text='Rizwan  Inventory Management System', font=('times new roman', 40 , 'bold'), bg='#212529', fg='#E0E0E0', anchor='w', padx=25, pady=10  )
 titleLabel.place(x=0, y=0, relwidth=1)
 logoutButton=Button(root, text='Logout', font=('times new roman', 20, 'bold'))
 logoutButton.place(x=1100, y=10)
@@ -51,21 +27,27 @@ imageLabel=Label(leftFrame, image=logo_Image)
 imageLabel.pack()
 menuLabel=Label(leftFrame, text="Menu", font=('times new roman', 20), bg='#212529', fg='#E0E0E0' )
 menuLabel.pack(fill=X)
+
 employe_Image = PhotoImage(file='employee.png')
-employe_button=Button(leftFrame, image=employe_Image, compound=LEFT, text=' Employees', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w',command=employee_form ,cursor="hand2")
+employe_button=Button(leftFrame, image=employe_Image, compound=LEFT, text=' Employees', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w', cursor="hand2", command = lambda :employee_form(root) )
 employe_button.pack(fill=X)
+
 supplier_Image = PhotoImage(file='supplier.png')
 supplier_button=Button(leftFrame, image=supplier_Image, compound=LEFT, text=' Supplier', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w',cursor="hand2")
 supplier_button.pack(fill=X)
+
 category_Image = PhotoImage(file='category.png')
 category_button=Button(leftFrame, image=category_Image, compound=LEFT, text=' Category', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w',cursor="hand2")
 category_button.pack(fill=X)
+
 products_Image = PhotoImage(file='products.png')
 products_button=Button(leftFrame, image=products_Image, compound=LEFT, text=' Products', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w',cursor="hand2")
 products_button.pack(fill=X)
+
 sales_Image = PhotoImage(file='sale.png')
 sales_button=Button(leftFrame, image=sales_Image, compound=LEFT, text=' Sales', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w',cursor="hand2")
 sales_button.pack(fill=X)
+
 exit_Image = PhotoImage(file='exit.png')
 exit_button=Button(leftFrame, image=exit_Image, compound=LEFT, text=' Exit', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w',cursor="hand2")
 exit_button.pack(fill=X)
