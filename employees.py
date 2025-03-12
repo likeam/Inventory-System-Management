@@ -4,7 +4,18 @@ from tkinter import ttk
 from tkinter import messagebox
 import pymysql
 
+def connectDatabase():
+   try:
+      connection = pymysql.connect(host='localhost', user='root', password='rossi202')
+      cursor = connection.cursor()
+   except:
+      messagebox.showerror('Error', "Database Connectivity Issue, Plesase open mysql comand line client" )
+      return
+   cursor.execute("CREATE DATABASE IF NOT EXISTS inventory_system")
+   cursor.execute('USE inventery_system')
+   cursor.execute('CREATE TABLE IF NOT EXISTS employee_data (empid INT PRIMARY KEY, name VARCHAR(100), address VARCHAR(200), phone VARCHAR(500), idcard VARCHAR(50), salary VARCHAR(50)')
 
+connectDatabase()
 
 
    
@@ -94,9 +105,7 @@ def employee_form(root):
    addButtonFrame = Frame(employee_frame)
    addButtonFrame.place(x=250, y=400)
 
-   # , command=addEmployee(empidEntry.get(), nameEntry.get(), addressEntry.get(), idCardEntry.get(),  phoneEntry.get(), salaryEntry.get())
-
-   addButton = Button(addButtonFrame, padx=15, pady=5,  text="Add", bg='#9E9E9E', fg='#E0E0E0', font=('times new roman', 15, 'bold'), cursor="hand2")
+   addButton = Button(addButtonFrame, padx=15, pady=5,  text="Add", bg='#9E9E9E', fg='#E0E0E0', font=('times new roman', 15, 'bold'), cursor="hand2", command=addEmployee(empidEntry.get(), nameEntry.get(), addressEntry.get(), idCardEntry.get(),  phoneEntry.get(), salaryEntry.get()))
    addButton.grid(row=0, column=0, padx=20)
 
    addButton = Button(addButtonFrame, padx=15, pady=5,  text="Update",  bg='#9E9E9E', fg='#E0E0E0', font=('times new roman', 15, 'bold'), cursor="hand2")
