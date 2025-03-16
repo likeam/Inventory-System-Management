@@ -1,10 +1,8 @@
 from tkinter import *
-from employees import employee_form
+from employees import employeeForm
 
 
-
-
-# GUI
+# GU
 
 root = Tk()
 
@@ -29,7 +27,7 @@ menuLabel=Label(leftFrame, text="Menu", font=('times new roman', 20), bg='#21252
 menuLabel.pack(fill=X)
 
 employe_Image = PhotoImage(file='employee.png')
-employe_button=Button(leftFrame, image=employe_Image, compound=LEFT, text=' Employees', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w', cursor="hand2", command = lambda :employee_form(root) )
+employe_button=Button(leftFrame, image=employe_Image, compound=LEFT, text=' Employees', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w', cursor="hand2", command = lambda: employeeForm(root) )
 employe_button.pack(fill=X)
 
 supplier_Image = PhotoImage(file='supplier.png')
@@ -101,8 +99,6 @@ total_sale_label_text=Label(sale_frame, text='Total Sales', bg='#FF4500', fg='wh
 total_sale_label_text.pack()
 total_sale_label_count=Label(sale_frame, text='0', bg='#FF4500', fg='white', font=('times new roman', 30, 'bold'))
 total_sale_label_count.pack()
-
-
 
 
 
