@@ -149,6 +149,11 @@ def searchEmployee(search_option, value):
          cursor.close()
          connection.close()
 
+def showAll(searchEntery, searchCombo):
+   treeviewData()
+   searchEntery.delete(0,END)
+   searchCombo.set('Search By')
+
 
 
 
@@ -159,21 +164,21 @@ def employeeForm(root):
    headingLabel= Label(employeeFrame,text="Manage Employee Details", font=('times new roman', 15, 'bold'),  bg='#212529', fg='#E0E0E0')
    headingLabel.place(x=0, y=0,  relwidth=1)
 
-   backButton = Button(employeeFrame, text="Back", padx=20,pady=10, font=('times new roman', 15, 'bold'),cursor="hand2", bg='#9E9E9E')
+   backButton = Button(employeeFrame, text="Back", padx=20,pady=10, font=('times new roman', 15, 'bold'),cursor="hand2", bg='#9E9E9E', command=lambda : employeeFrame.place_forget())
    backButton.place(x=10, y=30)
 
    topFrame = Frame(employeeFrame)
    topFrame.place(x=0, y=80, relwidth=1, height=235)
    searchFrame = Frame(topFrame)
    searchFrame.pack()
-   searchCombo = ttk.Combobox(searchFrame, values=('id', 'Name', 'Phone#'), font=('times new roman', 12), state="readonly")
+   searchCombo = ttk.Combobox(searchFrame, values=('id', 'Name', 'Address'), font=('times new roman', 12), state="readonly")
    searchCombo.set("Search By")
    searchCombo.grid(row=0, column=0, padx=20)
    searchEntery= Entry(searchFrame, font=('times new roman', 12), bg='lightyellow')
    searchEntery.grid(row=0, column=1, padx=20)
    searchButton= Button(searchFrame,  text="Search", bg='#9E9E9E', fg='#E0E0E0', font=('times new roman', 10, 'bold'), cursor="hand2", command= lambda :searchEmployee(searchCombo.get(), searchEntery.get()))
    searchButton.grid(row=0,column=2, padx=20)
-   searchButton= Button(searchFrame,  text="Show All", bg='#9E9E9E', fg='#E0E0E0', font=('times new roman', 10, 'bold'), cursor="hand2")
+   searchButton= Button(searchFrame,  text="Show All", bg='#9E9E9E', fg='#E0E0E0', font=('times new roman', 10, 'bold'), cursor="hand2", command= lambda :showAll(searchEntery, searchCombo) )
    searchButton.grid(row=0,column=3, padx=20)
 
    horizentalScrollbar = Scrollbar(topFrame, orient=HORIZONTAL)

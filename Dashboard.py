@@ -1,5 +1,37 @@
 from tkinter import *
 from employees import employeeForm
+from supplier import supplierForm
+from category import categoryForm
+from product import productForm
+from sales import salesForm
+from employees import connectDatabase
+import time
+
+def update():
+    cursor,connection=connectDatabase()
+    if not cursor or not connection:
+        return
+    cursor.execute('use inventory_system')
+    cursor.execute('SELECT * from employee_data')
+    records= cursor.fetchall()
+    total_emp_label_count.config(text=len(records))
+
+    cursor.execute('SELECT * from category_data')
+    records= cursor.fetchall()
+    total_cat_label_count.config(text=len(records))
+
+    cursor.execute('SELECT * from supplier_data')
+    records= cursor.fetchall()
+    total_supply_label_count.config(text=len(records))
+
+    cursor.execute('SELECT * from product_data')
+    records= cursor.fetchall()
+    total_product_label_count.config(text=len(records))
+
+    currentTime = time.strftime('%I:%M:%S %p on %A, %B, %d, %Y')
+    subtitleLabel.config(text=f'Welcome Admin\t\t {currentTime}')
+    subtitleLabel.after(1000, update)
+
 
 
 # GU
@@ -31,19 +63,23 @@ employe_button=Button(leftFrame, image=employe_Image, compound=LEFT, text=' Empl
 employe_button.pack(fill=X)
 
 supplier_Image = PhotoImage(file='supplier.png')
-supplier_button=Button(leftFrame, image=supplier_Image, compound=LEFT, text=' Supplier', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w',cursor="hand2")
+supplier_button=Button(leftFrame, image=supplier_Image, compound=LEFT, text=' Supplier', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w',cursor="hand2", command=lambda :supplierForm(root))
 supplier_button.pack(fill=X)
 
 category_Image = PhotoImage(file='category.png')
-category_button=Button(leftFrame, image=category_Image, compound=LEFT, text=' Category', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w',cursor="hand2")
+category_button=Button(leftFrame, image=category_Image, compound=LEFT, text=' Category', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w',cursor="hand2", command=lambda :categoryForm(root))
 category_button.pack(fill=X)
 
 products_Image = PhotoImage(file='products.png')
-products_button=Button(leftFrame, image=products_Image, compound=LEFT, text=' Products', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w',cursor="hand2")
+products_button=Button(leftFrame, image=products_Image, compound=LEFT, text=' Products', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w',cursor="hand2", command=lambda :productForm(root))
 products_button.pack(fill=X)
 
+bills_Image = PhotoImage(file='bills.png')
+bills_button=Button(leftFrame, image=bills_Image, compound=LEFT, text=' Bills', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w',cursor="hand2", command=lambda :salesForm(root))
+bills_button.pack(fill=X)
+
 sales_Image = PhotoImage(file='sale.png')
-sales_button=Button(leftFrame, image=sales_Image, compound=LEFT, text=' Sales', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w',cursor="hand2")
+sales_button=Button(leftFrame, image=sales_Image, compound=LEFT, text=' Sales', font=('times new roman', 20, 'bold'), bg='#E0E0E0', padx=10, anchor='w',cursor="hand2", command=lambda :salesForm(root))
 sales_button.pack(fill=X)
 
 exit_Image = PhotoImage(file='exit.png')
@@ -100,7 +136,7 @@ total_sale_label_text.pack()
 total_sale_label_count=Label(sale_frame, text='0', bg='#FF4500', fg='white', font=('times new roman', 30, 'bold'))
 total_sale_label_count.pack()
 
-
+update()
 
 root.mainloop()
 
