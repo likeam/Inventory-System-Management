@@ -1,9 +1,9 @@
 from tkinter import *
 from employees import employeeForm
-from supplier import supplierForm
-from category import categoryForm
-from product import productForm
-from sales import salesForm
+# from supplier import supplierForm
+# from category import categoryForm
+# from product import productForm
+# from sales import salesForm
 from employees import connectDatabase
 import time
 
